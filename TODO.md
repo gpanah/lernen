@@ -1,0 +1,2 @@
+- Try out Visual Studio
+- Webpack dev server - how to hook into the express stuff

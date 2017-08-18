@@ -1,0 +1,22 @@
+{
+  "name": "lernen",
+  "version": "0.1.0",
+  "description": "Javascript examples",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gpanah/lernen.git"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/gpanah/lernen/issues"
+  },
+  "homepage": "https://github.com/gpanah/lernen#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  }
+}
