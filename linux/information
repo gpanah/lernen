@@ -1,0 +1,18 @@
+### Create Linux Shortcut Commands
+
+1. At your user home, create a file.
+2. In this file, I add commands that I use but can't remember. For example:
+
+  ```
+  me ~ $ cat myDockerShortcuts
+  function bye_docker() {
+    docker rm $(docker ps -a -q)
+}```
+3. In the .bash_profile, source this file:
+
+  ```
+  source ~/myDockerShortcuts
+  ```
+
+4. Refresh the bash_profile or restart the terminal.
+5. To clean up all stopped docker images now sipmly enter `bye_docker`
