@@ -1,12 +1,13 @@
+/* global __dirname */
 //Use the config from the production js file
-var config = require("./webpack.config.js");
-var path = require("path");
+const config = require('./webpack.config.js'),
+  path = require('path')
 
 //Set the public path.  This is the URL path in the browser.  Required for hot update.
-config.output.publicPath = "/";
+config.output.publicPath = '/';
 
 //bundle the js source files as extra scripts for in-browser debugging
-config.devtool = "eval";
+config.devtool = 'eval';
 
 //http://webpack.github.io/docs/webpack-dev-server.html#api
 config.devServer = {
@@ -14,7 +15,7 @@ config.devServer = {
   inline: true,
   //tells webpack where to serve files from.  Keep in mind that bundle.js is served from memory, so without this entered,
   //it won't be able to find the bundle.js
-  contentBase: path.join(__dirname, "build")
+  contentBase: path.join(__dirname, 'build')
   //port is 8080 by default unless you otherwise specificy
 
 };
