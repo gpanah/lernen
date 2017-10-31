@@ -1,0 +1,14 @@
+{
+  "name": "leetcode",
+  "version": "1.0.0",
+  "description": "Place to test leetcode algoritms",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape algorithms/working/*.js"
+  },
+  "author": "B J Floyd <gpanah1927@gmail.com>",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "tape": "^4.8.0"
+  }
+}
