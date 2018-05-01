@@ -1,0 +1,30 @@
+apply plugin: 'java'
+
+repositories {
+  maven {
+    url "$mavenAsc0Url"
+    credentials {
+        username "$mavenUser"
+        password "$mavenAsc0Password"
+    }
+  }
+}
+
+jar {
+    baseName = 'hello-world'
+    version = '0.1.0'
+    manifest {
+       attributes 'Main-Class': "hello.HelloWorld"
+    }
+    from {
+       configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile "joda-time:joda-time:2.2"
+    testCompile "junit:junit:4.12"
+}
