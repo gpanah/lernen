@@ -1,0 +1,6 @@
+{
+    "editor.minimap.enabled": false,
+    "workbench.sideBar.location": "left",
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.panel.defaultLocation": "right"
+}
