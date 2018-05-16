@@ -1,6 +1,10 @@
 {
-    "editor.minimap.enabled": false,
-    "workbench.sideBar.location": "left",
-    "workbench.startupEditor": "newUntitledFile",
-    "workbench.panel.defaultLocation": "right"
+  "editor.minimap.enabled": false,
+  "workbench.sideBar.location": "left",
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.panel.defaultLocation": "right",
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "files.insertFinalNewline": true
 }

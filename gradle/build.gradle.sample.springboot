@@ -1,0 +1,53 @@
+// So if I depend on extra plugins, I have to get them
+// from somewhere, and no, it doesn't appear to default
+// to the repo at the root level.
+buildscript {
+   repositories {
+	  maven {
+	    url "$mavenAsc0Url"
+	    credentials {
+	        username "$mavenUser"
+	        password "$mavenAsc0Password"
+	    }
+	  }
+	}
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.1.RELEASE")
+    }
+}
+
+//Eclipse enable
+apply plugin: 'eclipse'
+
+//What is it I'm building?
+apply plugin: 'java'
+
+//What sugar am I adding
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+//jar is no more with spring boot plugin, need bootJar instead
+//Spring boot plugin can take care of the main class for me
+//and it bundles up all the deps into an uber jar.
+bootJar {
+    baseName = 'hello-world'
+    version = '0.1.0'
+}
+
+//Where do I look for my dependencies?
+repositories {
+  maven {
+    url "$mavenAsc0Url"
+    credentials {
+        username "$mavenUser"
+        password "$mavenAsc0Password"
+    }
+  }
+}
+
+dependencies {
+    compile "joda-time:joda-time:2.2"
+    testCompile "junit:junit:4.12"
+}

@@ -1,14 +1,11 @@
+//Eclipse enable
+apply plugin: 'eclipse'
+
+//What is it I'm building?
 apply plugin: 'java'
 
-repositories {
-  maven {
-    url "$mavenAsc0Url"
-    credentials {
-        username "$mavenUser"
-        password "$mavenAsc0Password"
-    }
-  }
-}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
 
 jar {
     baseName = 'hello-world'
@@ -21,8 +18,16 @@ jar {
     }
 }
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+//Where do I look for my dependencies?
+repositories {
+  maven {
+    url "$mavenAsc0Url"
+    credentials {
+        username "$mavenUser"
+        password "$mavenAsc0Password"
+    }
+  }
+}
 
 dependencies {
     compile "joda-time:joda-time:2.2"
