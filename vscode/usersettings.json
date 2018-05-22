@@ -6,5 +6,7 @@
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
-  "files.insertFinalNewline": true
+  "files.insertFinalNewline": true,
+  "editor.autoIndent": false
+
 }
