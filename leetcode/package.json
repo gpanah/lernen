@@ -4,11 +4,11 @@
   "description": "Place to test leetcode algoritms",
   "main": "index.js",
   "scripts": {
-    "test": "tape algorithms/working/*.js"
+    "test": "tape test/working/*.js"
   },
   "author": "B J Floyd <gpanah1927@gmail.com>",
   "license": "UNLICENSED",
   "devDependencies": {
-    "tape": "^4.8.0"
+    "tape": "^4.9.1"
   }
 }
