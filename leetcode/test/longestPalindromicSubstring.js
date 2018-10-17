@@ -1,4 +1,4 @@
-const lps = require('../../algorithms/longestPalindromicSubstringOptimized.js'),
+const lps = require('../algorithms/longestPalindromicSubstringOptimized.js'),
   test = require('tape')
 
 test('1', (t) => {
