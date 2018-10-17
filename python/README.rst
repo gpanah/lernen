@@ -41,7 +41,7 @@ Project Structure
   LICENSE  
   setup.py  
   requirements.txt  
-  sample/**init**.py
+  sample/__init___.py
   sample/core.py
   sample/helpers.py
   docs/conf.py
@@ -49,3 +49,4 @@ Project Structure
   tests/test_basic.py
   tests/test_advanced.py
 
+Read more `here <https://docs.python-guide.org/writing/structure/>`_
