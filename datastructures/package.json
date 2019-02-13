@@ -1,0 +1,19 @@
+{
+  "name": "datastructures",
+  "version": "1.0.0",
+  "description": "A data structures project.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape tests/**/graph-test.js"
+  },
+  "keywords": [
+    "data",
+    "structures"
+  ],
+  "author": "B J Floyd",
+  "license": "UNLICENSED",
+  "dependencies": {},
+  "devDependencies": {
+    "tape": "^4.9.1"
+  }
+}
