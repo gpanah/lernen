@@ -1,0 +1,17 @@
+Window
+show/hide launch bar = option + cmd + d
+Focus to the apple on the menu bar = ctrl +f4 (changed from default of ctrl +f2 which wouldn’t work consistently)
+minimize = cmd + M
+
+
+Navigation
+fn + left arrow = begin of doc
+fn + right arrow = end of doc
+cmd + left arrow = begin of line
+cmd + right arrow = end of line
+page-up = alt + up arrow
+page-down = alt + down arrow
+
+Text editing
+delete text to left of cursor = delete
+delete text to right of cursor = fn + delete
