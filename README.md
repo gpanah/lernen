@@ -1,2 +1,2 @@
 # lernen
-A repository for lifelong learning
+A repository for lifelong learning.
