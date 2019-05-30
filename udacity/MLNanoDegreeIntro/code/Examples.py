@@ -170,7 +170,7 @@ y = data[:,2]
 # TODO: Create the decision tree model and assign it to the variable model.
 # You won't need to, but if you'd like, play with hyperparameters such
 # as max_depth and min_samples_leaf and see what they do to the decision
-# boundary.
+# boundary.Tree
 model = DecisionTreeClassifier(max_depth = 7, min_samples_leaf = 1)
 
 # TODO: Fit the model.
@@ -214,3 +214,72 @@ y_pred = model.predict(X)
 
 # TODO: Calculate the accuracy and assign it to the variable acc.
 acc = accuracy_score(y, y_pred)
+
+
+## ROC Curves
+
+def build_roc_auc(model, X_train, X_test, y_train, y_test):
+    '''
+    INPUT:
+    model - an sklearn instantiated model
+    X_train - the training data
+    y_train - the training response values (must be categorical)
+    X_test - the test data
+    y_test - the test response values (must be categorical)
+    OUTPUT:
+    auc - returns auc as a float
+    prints the roc curve
+    '''
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from itertools import cycle
+    from sklearn.metrics import roc_curve, auc, roc_auc_score
+    from scipy import interp
+    
+    y_preds = model.fit(X_train, y_train).predict_proba(X_test)
+    # Compute ROC curve and ROC area for each class
+    fpr = dict()
+    tpr = dict()
+    roc_auc = dict()
+    for i in range(len(y_test)):
+        fpr[i], tpr[i], _ = roc_curve(y_test, y_preds[:, 1])
+        roc_auc[i] = auc(fpr[i], tpr[i])
+
+    # Compute micro-average ROC curve and ROC area
+    fpr["micro"], tpr["micro"], _ = roc_curve(y_test.ravel(), y_preds[:, 1].ravel())
+    roc_auc["micro"] = auc(fpr["micro"], tpr["micro"])
+    
+    plt.plot(fpr[2], tpr[2], color='darkorange',
+             lw=2, label='ROC curve (area = %0.2f)' % roc_auc[2])
+    plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+    plt.xlim([0.0, 1.0])
+    plt.ylim([0.0, 1.05])
+    plt.xlabel('False Positive Rate')
+    plt.ylabel('True Positive Rate')
+    plt.title('Receiver operating characteristic example')
+    plt.show()
+    
+    return roc_auc_score(y_test, np.round(y_preds[:, 1]))
+    
+    
+# Finding roc and auc for the random forest model    
+build_roc_auc(rf_mod, training_data, testing_data, y_train, y_test) 
+
+
+#####################
+# Softmax
+
+import numpy as np
+
+def softmax(L):
+    expL = np.exp(L)
+    sumExpL = sum(expL)
+    result = []
+    for i in expL:
+        result.append(i*1.0/sumExpL)
+    return result
+    
+    # Note: The function np.divide can also be used here, as follows:
+    # def softmax(L):
+    #     expL = np.exp(L)
+    #     return np.divide (expL, expL.sum())
