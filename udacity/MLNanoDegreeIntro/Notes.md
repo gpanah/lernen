@@ -386,3 +386,135 @@ For N scores, the probability associated with a given score is e to the score's 
 **One Hot Encoding**
 Take an attribute that has multiple non-numeric values, and for each value, make a T/F column for that value.  So an attribute with 3 values becomes 3 attributes with 2 values for each (1 and 0).
 
+**Maximum Likelihood**
+
+Maximize the probability for all points in the space.
+
+**Cross Entropy**
+
+Good model has a low cross entropy.  It is the sum of the negative logs of each probability of the points in the set.
+
+Formula:
+`-np.sum(Y * np.log(P) + (1 - Y) * np.log(1 - P))`
+
+**Multi-Class Cross Entropy**
+
+Calculation for cross entropy for more than 2 classes.
+
+![mcce](images/multi-classcrossentropy.png)
+
+**Logistic Regression**  
+Now, we're finally ready for one of the most popular and useful algorithms in Machine Learning, and the building block of all that constitutes Deep Learning. The Logistic Regression Algorithm. And it basically goes like this:
+
+- Take your data
+- Pick a random model
+- Calculate the error
+- Minimize the error, and obtain a better model
+
+
+Neural Networks have multiple layers:
+
+![layers](images/neural-layers.png)
+
+input - contains inputs
+hidden - set of linear models created
+output - combination of linear models to create non-linear output
+
+**Deep Neural Network**
+Multiple hidden layers where not only are linear models combined to create non-linear models, but non-linear models are combined to create more complex non-linear models.
+
+**Feedforward**  
+Feedforward is the process neural networks use to turn the input into an output.
+
+**Backpropagation**  
+Now, we're ready to get our hands into training a neural network. For this, we'll use the method known as backpropagation. In a nutshell, backpropagation will consist of:
+
+- Doing a feedforward operation.
+- Comparing the output of the model with the desired output.
+- Calculating the error.
+- Running the feedforward operation backwards (backpropagation) to spread the error to each of the weights.
+- Use this to update the weights, and get a better model.
+- Continue this until we have a model that is good.
+
+**Chain Rule**
+
+Main technique for calculating the derivatives, which is key to gradient descent and therefore Back propagation.
+
+Backpropagation is the reverse of FeedForward. 
+
+**Log loss is roughly the same as cross-entrophy... I think**
+
+**Gradient Descent**
+
+Can be performed on any error function (e.g. log-loss or mean square error), but it has its flaws (e.g. can be slow to converge, hit local minima).  To combat the local minima can use [momentum](https://distill.pub/2017/momentum/).
+
+
+**Backpropagation**  
+Now we've come to the problem of how to make a multilayer neural network learn. Before, we saw how to update weights with gradient descent. The backpropagation algorithm is just an extension of that, using the chain rule to find the error with the respect to the weights connecting the input layer to the hidden layer (for a two layer network).
+
+To update the weights to hidden layers using gradient descent, you need to know how much error each of the hidden units contributed to the final output. Since the output of a layer is determined by the weights between layers, the error resulting from units is scaled by the weights going forward through the network. Since we know the error at the output, we can use the weights to work backwards to hidden layers.
+
+**Implementing in NumPy**  
+For the most part you have everything you need to implement backpropagation with NumPy.
+
+However, previously we were only dealing with error terms from one unit. Now, in the weight update, we have to consider the error for each unit in the hidden layer.
+
+Firstly, there will likely be a different number of input and hidden units, so trying to multiply the errors and the inputs as row vectors will throw an error.
+
+Also, w<sub>ij</sub> is a matrix now, so the right side of the assignment must have the same shape as the left side. Luckily, NumPy takes care of this for us. If you multiply a row vector array with a column vector array, it will multiply the first element in the column by each element in the row vector and set that as the first row in a new 2D array. This continues for each element in the column vector, so you get a 2D array that has shape `(len(column_vector), len(row_vector))`
+
+It turns out this is exactly how we want to calculate the weight update step. As before, if you have your inputs as a 2D array with one row, you can also do `hidden_error*inputs.T`, but that won't work if inputs is a 1D array.
+
+![backprop](images/backprop1.png)
+
+
+Backpropagation is fundamental to deep learning. TensorFlow and other libraries will perform the backprop for you, but you should really really understand the algorithm. We'll be going over backprop again, but here are some extra resources for you:
+
+From Andrej Karpathy: [Yes, you should understand backprop](https://medium.com/@karpathy/yes-you-should-understand-backprop-e2f06eab496b#.vt3ax2kg9)
+
+Also from Andrej Karpathy, [a lecture from Stanford's CS231n course](https://www.youtube.com/watch?v=59Hbtz7XgjM)
+
+## Training Neural Networks
+
+How to know when to stop training a neural network to avoid overfitting.
+
+**Early Stopping**
+
+![backprop](images/earlystopping.png)
+
+Large Coefficients lead to overfitting
+
+Incoroprate weights into error function, which is what we were doing before with regularization.  L1 - absolute value, L2 - squares.
+
+![l1 vs l2 regularizaiton](images/l1vsl2reg.png)
+
+**Dropout**
+
+Sometimes during training, turn-off some of the nodes so that each node gets exercised.  This is to prevent over-weighting of nodes.
+
+**Random Restarts**
+To avoid local minimum, start at various points.
+
+**Vanishing Gradient**
+The sigmoid produces small changes. It may take a long time to get to minimum.
+
+Hyperbolic Tangent Function is alternative.
+
+Rectified Linear Unit (ReLU) is another approach. Can improve gradient descent.
+
+**Stochastic Gradient Descent**
+
+Take small subsets of the data for each Epoch, rather than using the whole data set.  If data is fairly well evenly distributed, this works.
+
+**Momentum**
+Constant (Beta) that weights the previous steps to help us get over local minimums.
+
+**Tensor**
+A generalization of vectors and matrices.
+
+Tensor with one dimension is a vector.  A matrix, is a two dimensional tensor.
+
+3-d Tensor would be like a color picture. (RGB values)
+
+Tensors are base data structure in neural networks (e.g. Pytorch, tensorflow)
+
