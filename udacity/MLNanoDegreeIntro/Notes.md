@@ -518,3 +518,275 @@ Tensor with one dimension is a vector.  A matrix, is a two dimensional tensor.
 
 Tensors are base data structure in neural networks (e.g. Pytorch, tensorflow)
 
+## Unsupervised Learning
+
+- No labeled data, focused on grouping data together.
+
+I. Clustering
+Clustering is one of the most popular unsupervised approaches. In a first look at clustering, you will gain an understanding of what clustering your data means. Then, you will see how the k-means algorithm works. You will put your skills to work to find groupings of similar movies!
+
+II. Hierarchical and Density Based Clustering
+Another set of clustering algorithms takes an approach of using density based 'closeness' measures. At the end of the lesson, you will see how this can be used in traffic classification, as well as in anomaly detection (finding points that aren't like others in your dataset).
+
+III. Gaussian Mixture Models and Cluster Validation
+To extend the density based approaches, you will get some practice with gaussian mixture models. This technique is not far from what you learned in the previous lesson, and it is the last of the clustering algorithms you will learn before moving to matrix decomposition methods.
+
+IV. Principal Component Analysis
+Principal component analysis is one of the most popular decomposition methods available today. In this lesson, you will learn how matrix decomposition methods work conceptually. Then you will apply principal component analysis to images of handwritten digits to reduce the dimensionality of these images.
+
+V. Random Projection and Independent Component Analysis
+Another way to decompose data is through independent component analysis. In this lesson, you will see how this method can pull apart audio related to a piano, cello, and television that has been overlaid in the same file.
+
+**Two main types of unsupervised learning**
+- Clustering
+- Dimensionality reduction
+
+### K-Means (most popular clustering algorithm)
+- K stands for the number of groups
+- Sometimes you have an idea what K should be
+- Other times a method for choosing K would be helpful
+
+**Elbow Method**
+Start with a k=1, and compute distance from each point to the k point (not sure how you choose the location of k).  Continuing increasing k until the reduction in the average distance from k levels off.
+
+**Clustering Recap**
+We just covered a bunch of information! Here is a quick recap!
+
+I. Clustering
+You learned about clustering, a popular method for unsupervised machine learning. We looked at three ways to identify clusters in your dataset.
+
+Visual Inspection of your data.
+Pre-conceived ideas of the number of clusters.
+The elbow method, which compares the average distance of each point to the cluster center for different numbers of centers.
+II. K-Means
+You saw the k-means algorithm for clustering data, which has 3 steps:
+
+1. Randomly place k-centroids amongst your data.
+
+Then repeat the following two steps until convergence (the centroids don't change):
+
+2. Look at the distance from each centroid to each point. Assign each point to the closest centroid.
+
+3. Move the centroid to the center of the points assigned to it.
+
+III. Concerns with K-Means
+Finally, we discussed some concerns with the k-means algorithm. These concerns included:
+
+1. Concern: The random placement of the centroids may lead to non-optimal solutions.
+
+Solution: Run the algorithm multiple times and choose the centroids that create the smallest average distance of the points to the centroids.
+
+2. Concern: Depending on the scale of the features, you may end up with different groupings of your points.
+
+Solution: Scale the features using Standardizing, which will create features with mean 0 and standard deviation 1 before running the k-means algorithm.
+
+### Hierarchical Clustering
+
+Single-Link clustering is based on grouping clusters in bottom-up fashion (agglomerative clustering), at each step combining two clusters that contain the closest pair of elements not yet belonging to the same cluster as each other.
+
+ The result of the clustering can be visualized as a __dendrogram__, which shows the sequence of cluster fusion and the distance at which each fusion took place.  Dendrograms are valuable for visualizing clusters in data sets with multiple dimensions.
+
+ ![dendogram](images/dendogram.png)
+
+
+__Agglomerative Clustering__
+  - Clustering from the bottom up.  Available in SKlearn.
+
+- In addition to single link there is __complete__, __average__, and __ward__,
+- Nutshell:
+  - Single - distance between closest points
+  - Complete - distance between farthest points
+  - Average - avg distnace between all points.
+  - Wards - more complex avg.
+
+### Density Based Clustering
+**DBSCAN**
+- good for datasets with noise
+- don't need to specify the number of clusters
+- flexibility in the size and shape of cluster
+
+cons
+- not guaranteed to produce same results if border points could fall in multiple clusters (first one wins and the order it processes points is random)
+- difficulty finding clusters of varying density (can be overcome with HDBSCAN)
+
+Applications:  
+[Traffic Classification Using Clustering Algorithms](https://pages.cpsc.ucalgary.ca/~mahanti/papers/clustering.pdf)  
+
+[ Anomaly detection in temperature data using dbscan algorithm](https://ieeexplore.ieee.org/abstract/document/5946052/)
+
+### Gaussian Mixture Models
+
+- soft clustering - each point is a member of every cluster, but to a varying degree (percentage)
+
+- cluster shape flexibility
+
+cons 
+
+- sensitive to initial values
+- possible to converge to a local optimum
+- slow convergence rate
+
+Applications:
+
+Paper: [Nonparametric discovery of human routines from sensor data](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.681.3152&rep=rep1&type=pdf)
+
+Paper: [Application of the Gaussian mixture model in pulsar astronomy](https://arxiv.org/abs/1205.6221)
+
+Paper: [Speaker Verification Using Adapted Gaussian Mixture Models](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.117.338&rep=rep1&type=pdf)
+
+Paper: [Adaptive background mixture models for real-time tracking](http://www.ai.mit.edu/projects/vsam/Publications/stauffer_cvpr98_track.pdf)
+
+Video: https://www.youtube.com/watch?v=lLt9H6RFO6A
+
+### Cluster Analysis
+
+1. Feature selection and extraction.
+1. Clustering Algorithm selection & tuning (proximity measure (Euclidian, Cosine distance (docs), Pierson correlation (gene expression ))
+1. Cluster evaluation
+1. Results Intepretation
+
+__Cluster Validation__  
+1. External indicies (e.g. labeled data)
+2. Internal indicies (e.g. measure the fit based upon structure of the data)
+3. Relative indicies (e.g. comparing two clustering algorithms)
+
+### Dimensionality Reduction
+
+PCA (Principal Component Analysis)
+
+1. Dimensionality Reduction through Feature Selection and Feature Extraction
+With large datasets we often suffer with what is known as the "curse of dimensionality," and need to reduce the number of features to effectively develop a model. Feature Selection and Feature Extraction are two general approaches for reducing dimensionality.
+
+2. Feature Extraction using PCA
+Principal Component Analysis is a common method for extracting new "latent features" from our dataset, based on existing features.
+
+3. Fitting PCA
+In this part of the lesson, you will use PCA in scikit-learn to reduce the dimensionality of images of handwritten digits.
+
+4. Interpreting Results
+Once you are able to use PCA on a dataset, it is essential that you know how to interpret the results you get back. There are two main parts to interpreting your results - the principal components themselves and the variability of the original data captured by those components. You will get familiar with both.
+
+5. Mini-project
+Finally, you will put your skills to work on a new dataset.
+
+6. Quick Recap
+We will do a quick recap, and you will be ready to use PCA for your own applications, as well as the project!
+
+**Feature Reduction**
+
+Reducing the Number of Features - Dimensionality Reduction
+Our real estate example is great to help develop an understanding of feature reduction and latent features. But we have a smallish number of features in this example, so it's not clear why it's so necessary to reduce the number of features. And in this case it wouldn't actually be required - we could handle all six original features to create a model.
+
+But the "curse of dimensionality" becomes more clear when we're grappling with large real-world datasets that might involve hundreds or thousands of features, and to effectively develop a model really requires us to reduce our number of dimensions.
+
+Two Approaches : Feature Selection and Feature Extraction
+Feature Selection
+Feature Selection involves finding a subset of the original features of your data that you determine are most relevant and useful. In the example image below, taken from the video, notice that "floor plan size" and "local crime rate" are features that we have selected as a subset of the original data.
+
+Methods of Feature Selection:
+Filter methods - Filtering approaches use a ranking or sorting algorithm to filter out those features that have less usefulness. Filter methods are based on discerning some inherent correlations among the feature data in unsupervised learning, or on correlations with the output variable in supervised settings. Filter methods are usually applied as a preprocessing step. Common tools for determining correlations in filter methods include: Pearson's Correlation, Linear Discriminant Analysis (LDA), and Analysis of Variance (ANOVA).
+Wrapper methods - Wrapper approaches generally select features by directly testing their impact on the performance of a model. The idea is to "wrap" this procedure around your algorithm, repeatedly calling the algorithm using different subsets of features, and measuring the performance of each model. Cross-validation is used across these multiple tests. The features that produce the best models are selected. Clearly this is a computationally expensive approach for finding the best performing subset of features, since they have to make a number of calls to the learning algorithm. Common examples of wrapper methods are: Forward Search, Backward Search, and Recursive Feature Elimination.
+
+Scikit-learn has a feature selection module that offers a variety of methods to improve model accuracy scores or to boost their performance on very high-dimensional datasets.
+
+Feature Extraction  
+Feature Extraction involves extracting, or constructing, new features called latent features. In the example image below, taken from the video, "Size Feature" and "Neighborhood Quality Feature" are new latent features, extracted from the original input data.
+
+Methods of Feature Extraction
+Constructing latent features is exactly the goal of Principal Component Analysis (PCA), which we'll explore throughout the rest of this lesson.
+
+Other methods for accomplishing Feature Extraction include Independent Component Analysis (ICA) and Random Projection, which we will study in the following lesson.
+
+Further Exploration
+If you're interested in deeper study of these topics, here are a couple of helpful blog posts and a research paper:
+
+https://www.analyticsvidhya.com/blog/2016/12/introduction-to-feature-selection-methods-with-an-example-or-how-to-select-the-right-variables/
+https://elitedatascience.com/dimensionality-reduction-algorithms
+http://www.ai.mit.edu/projects/jmlr/papers/volume3/guyon03a/source/old/guyon03a.pdf
+
+**What Are Eigenvalues and Eigenvectors?**
+The mathematics of PCA isn't really necessary for PCA to be useful. However, it can be useful to fully understand the mathematics of a technique to understand how it might be extended to new cases. For this reason, the page has a few additional references which go more into the mathematics of PCA.
+
+A simple introduction of what PCA is aimed to accomplish is provided [here in a simple example](https://www.youtube.com/watch?v=HH8pouRwphA).
+
+A nice visual, and mathematical, illustration of PCA is provided in [this video by 3 blue 1 brown](https://www.youtube.com/watch?v=PFDu9oVAE-g).
+
+If you dive into the literature surrounding PCA, you will without a doubt run into the language of eigenvalues and eigenvectors. These are just the math-y words for things you have already encountered in this lesson.
+
+An eigenvalue is the same as the amount of variability captured by a principal component, and an eigenvector is the principal component itself. To see more on these ideas, take a look at the following three links below:
+
+[A great introduction into the mathematics of principal components analysis.](http://www.cs.otago.ac.nz/cosc453/student_tutorials/principal_components.pdf)
+
+[An example of using PCA in python by one of my favorite data scientists.](https://sebastianraschka.com/Articles/2015_pca_in_3_steps.html)
+
+[An example of PCA from the scikit learn documentation.](http://scikit-learn.org/stable/auto_examples/applications/plot_face_recognition.html#sphx-glr-auto-examples-applications-plot-face-recognition-py)
+
+
+**Dimensionality Reduction and PCA - Lesson Topics**
+Phew! That was a ton of information - here is a quick recap!
+
+1. **Two Methods for Dimensionality Reduction**
+You learned that Feature Selection and Feature Extraction are two general approaches for reducing the number of features in your data. Feature Selection processes result in a subset of the most significant original features in the data, while Feature Extraction methods like PCA construct new latent features that well represent the original data.
+
+2. **Dimensionality Reduction and Principal Components**
+You learned that Principal Component Analysis (PCA) is a technique that is used to reduce the dimensionality of your dataset. The reduced features are called principal components, or latent features. These principal components are simply a linear combination of the original features in your dataset.
+
+You learned that these components have two major properties:
+
+    1. They aim to capture the most amount of variability in the original dataset.
+    2. They are orthogonal to (independent of) one another.
+
+3. **Fitting PCA**
+Once you got the gist of what PCA was doing, we used it on handwritten digits within scikit-learn.
+
+We did this all within a function called `do_pca`, which returned the PCA model, as well as the reduced feature matrix. You simply passed in the number of features you wanted back, as well as the original dataset.
+
+4. **Interpreting Results**
+You then saw there are two major parts to interpreting the PCA results:
+
+    1. The variance explained by each component. You were able to visualize this with scree plots to understand how many components you might keep based on how much information was being retained.
+    
+    2. The principal components themselves, which gave us an idea of which original features were most related to why a component was able to explain certain aspects about the original datasets.
+
+5. **Mini-project**
+Finally, you applied PCA to a dataset on vehicle information. You gained valuable experience using scikit-learn, as well as interpreting the results of PCA.
+
+With mastery of these skills, you are now ready to use PCA for any task in which you feel it may be useful. If you have a large amount of data, and are feeling afflicted by the curse of dimensionality, you want to reduce your data to a smaller number of latent features, and you know just the way to do it!
+
+6. Do you think you understand PCA well enough yet to explain it in a way that would make sense to your grandmother?
+Here is an interesting StackExchange post that does just that, and with animated graphics! https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues
+
+### Random Projection and ICA
+
+**Random Projection**
+- More efficient than PCA
+- Better for many features than PCA
+- Johnson-Lindenstrauss lemma
+
+Paper: [Random projection in dimensionality reduction: Applications to image and text data](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.76.8124&rep=rep1&type=pdf)
+
+This paper examines using Random Projection to reduce the dimensionality of image and text data. It shows how Random Projection proves to be a computationally simple method of dimensionality reduction, while still preserving the similarities of data vectors to a high degree. The paper shows this on real-world datasets including noisy and noiseless images of natural scenes, and text documents from a newsgroup corpus.
+
+Paper: [Random Projections for k-means Clustering](https://papers.nips.cc/paper/3901-random-projections-for-k-means-clustering.pdf)
+
+This paper uses Random Projection as an efficient dimensionality reduction step before conducting k-means clustering on a dataset of 400 face images of dimensions 64 × 64.
+
+**Independent Component Analysis (ICA)**
+- Similar to PCA and Random Projection
+- PCA maximizes variance, ICA assumes that the features mixtures of independent sources.
+- Cocktail party example, what are the distinct sources of noise, Blind source separation
+- ICA needs as many observations as the original signals we are trying to separate
+
+FastICA Algorithm
+
+1. Center X
+2. Choose random weight matrix
+3. Estimate W, containing vectors
+4. Decorate W
+5. Repeat from step 3 until converged
+
+Paper: "[Independent component analysis: algorithms and applications](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.322.679&rep=rep1&type=pdf)" (pdf)
+
+Paper: [Independent Component Analysis of Electroencephalographic Data](http://papers.nips.cc/paper/1091-independent-component-analysis-of-electroencephalographic-data.pdf) [PDF]
+
+Paper: [Applying Independent Component Analysis to Factor Model in Finance](https://pdfs.semanticscholar.org/a34b/e08a20eba7523600203a32abb026a8dd85a3.pdf)
