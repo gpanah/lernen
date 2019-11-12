@@ -20,3 +20,8 @@ then `bye_docker` will clear all the stopped containers
 https://bobcares.com/blog/how-to-clear-docker-cache-and-save-disk-space/2/
 
 `docker rmi $(docker images -f "dangling=true" -q)`
+
+### Login to running docker instance
+
+docker exec -it <container_name or id> <shell>  
+`$ docker exec -it emi-db /bin/bash`

@@ -1,5 +1,4 @@
 [[source]]
-url = "https://nexus.opr.statefarm.org/repository/pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
