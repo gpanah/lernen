@@ -24,7 +24,7 @@
     "babel-preset-env": "~1.6.1",
     "copyfiles": "~1.2.0",
     "css-loader": "~0.28.7",
-    "eslint": "~4.9.0",
+    "eslint": "~6.6.0",
     "less": "~3.0.0-alpha.3",
     "less-loader": "~4.0.5",
     "rimraf": "~2.6.2",
